@@ -18,7 +18,13 @@ const FamilyMap = () => {
         const longitude = parseFloat(mapContainer.getAttribute('data-ts-map-center-longitude'));
         const zoom = parseInt(mapContainer.getAttribute('data-ts-map-zoom'));
 
-        const map = L.map(mapContainer).setView([latitude, longitude], zoom);
+        const map = L.map(mapContainer, {
+          center: [latitude, longitude],
+          zoom: zoom,
+          scrollWheelZoom: true, // Enable scroll wheel zoom
+          dragging: true // Enable dragging
+        });
+
         L.tileLayer(mapContainer.getAttribute('data-ts-map-leaflet-provider'), {
           attribution: mapContainer.getAttribute('data-ts-map-leaflet-attribution')
         }).addTo(map);
@@ -32,7 +38,6 @@ const FamilyMap = () => {
                 <div class="ts-marker-wrapper">
                   <a href="#" class="ts-marker" data-ts-id="${point.id}" data-ts-ln="${point.id}" style="outline: none;">
                     <div class="ts-marker__title">${point.title}</div>
-                    <div class="ts-marker__info">$${point.price}</div>
                     <div class="ts-marker__image ts-black-gradient" style="background-image: url(${point.marker_image})"></div>
                   </a>
                 </div>
@@ -41,29 +46,38 @@ const FamilyMap = () => {
             })
           });
 
-          marker.bindPopup(`
+          const popupContent = `
             <div class="infobox-wrapper ts-show">
               <div class="ts-infobox" data-ts-id="${point.id}">
                 <img src="assets/img/infobox-close.svg" class="ts-close">
                 <a href="${point.url}" class="ts-infobox__wrapper ts-black-gradient">
                   <div class="ts-infobox__content">
                     <figure class="ts-item__info">
-                      <div class="ts-item__info-badge">$${point.price}</div>
                       <h4>${point.title}</h4>
                       <aside><i class="fa fa-map-marker mr-2"></i>${point.address}</aside>
                     </figure>
                     <div class="ts-description-lists">
-                      <dl><dt>Area</dt><dd>${point.area}m<sup>2</sup></dd></dl>
-                      <dl><dt>Bedrooms</dt><dd>${point.bedrooms}</dd></dl>
-                      <dl><dt>Bathrooms</dt><dd>${point.bathrooms}</dd></dl>
-                      <dl><dt>Rooms</dt><dd>${point.rooms}</dd></dl>
+                      <dl><dt>Website</dt><dd>${point.website}</dd></dl>
+                      <dl><dt>Phone</dt><dd>${point.phone}</dd></dl>
+                      <dl><dt>Email</dt><dd>${point.email}</dd></dl>
+                      <dl><dt>Hours</dt><dd>${point.hours}</dd></dl>
                     </div>
                   </div>
                   <div class="ts-infobox_image" style="background-image: url(${point.marker_image})"></div>
                 </a>
               </div>
             </div>
-          `);
+          `;
+
+          marker.bindPopup(L.popup({ closeButton: false }).setContent(popupContent));
+
+          marker.on('popupopen', function () {
+            const popupNode = marker.getPopup().getElement();
+            const closeButton = popupNode.querySelector('.ts-close');
+            closeButton.addEventListener('click', function () {
+              marker.closePopup();
+            });
+          });
 
           markers.addLayer(marker);
 
@@ -74,16 +88,15 @@ const FamilyMap = () => {
               <a href="${point.url}" class="card ts-item ts-card ts-result">
                 <div class="card-img ts-item__image" style="background-image: url(${point.marker_image})"></div>
                 <div class="card-body">
-                  <div class="ts-item__info-badge">$${point.price}</div>
                   <figure class="ts-item__info">
                     <h4>${point.title}</h4>
                     <aside><i class="fa fa-map-marker mr-2"></i>${point.address}</aside>
                   </figure>
                   <div class="ts-description-lists">
-                    <dl><dt>Area</dt><dd>${point.area}m<sup>2</sup></dd></dl>
-                    <dl><dt>Bedrooms</dt><dd>${point.bedrooms}</dd></dl>
-                    <dl><dt>Bathrooms</dt><dd>${point.bathrooms}</dd></dl>
-                    <dl><dt>Rooms</dt><dd>${point.rooms}</dd></dl>
+                    <dl><dt>Website</dt><dd>${point.website}</dd></dl>
+                    <dl><dt>Phone</dt><dd>${point.phone}</dd></dl>
+                    <dl><dt>Email</dt><dd>${point.email}</dd></dl>
+                    <dl><dt>Hours</dt><dd>${point.hours}</dd></dl>
                   </div>
                 </div>
                 <div class="card-footer">
@@ -105,7 +118,11 @@ const FamilyMap = () => {
     };
 
     if (iframe) {
-      iframe.onload = initializeMap;
+      if (iframe.contentWindow.document.readyState === 'complete') {
+        initializeMap();
+      } else {
+        iframe.onload = initializeMap;
+      }
     }
     return () => {
       if (iframe) {

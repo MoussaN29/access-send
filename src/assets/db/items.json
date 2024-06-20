@@ -1,5 +1,20 @@
 [
   {
+    "id": 11,
+    "title": "AL-HASANIYA - MOROCCAN WOMEN'S CENTRE",
+    "category": 1,
+    "marker_image": "assets/img/img-item-thumb-01.jpg",
+    "url": "https://www.onewestminster.org.uk/directory/19152",
+    "website": "http://al-hasaniya.org.uk",
+    "address": "Bays 4-5 Trellick Tower, Golborne Road, London, W10 5PA",
+    "latitude": "51.523670",
+    "longitude": "-0.205360",
+    "ribbon": "<i class='fa fa-thumbs-up'></i>",
+    "phone": "0203 048 4488",
+    "email": "contact@al-hasaniya.org.uk",
+    "hours": "TBD"
+  },
+  {
     "id": 1,
     "title": "Placeholder",
     "price": 0,
@@ -118,5 +133,22 @@
     "f__microwave": 0,
     "latitude": "40.72217055684573",
     "longitude": "-73.44139972399904"
+  },
+  {
+    "id": 8,
+    "title": "Placeholder",
+    "price": 0,
+    "category": 1,
+    "marker_image": "assets/img/img-item-thumb-01.jpg",
+    "url": "detail-01.html",
+    "address": "3317 Lancelot Dr",
+    "area": 0,
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "rooms": 0,
+    "f__air_condition": 0,
+    "f__microwave": 0,
+    "latitude": "32.30446",
+    "longitude": "-86.11322"
   }
 ]
