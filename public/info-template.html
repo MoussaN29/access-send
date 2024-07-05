@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="ThemeStarz">
+    <title>Info Template</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/leaflet.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container" style="padding-top: 20px;">
+        <section id="basic-information" class="mb-5">
+            <h3 class="text-muted border-bottom">Basic Information</h3>
+            <div class="row">
+                <div class="col-sm-10">
+                    <label>Title</label>
+                    <p id="title">Luxury Apartment</p>
+                </div>
+                <div class="col-sm-4">
+                    <div class="btn-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-book"></i> Book Service
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="btn-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Message Service
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="btn-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="location" class="mb-5">
+            <h3 class="text-muted border-bottom">Location</h3>
+            <div id="map" data-ts-map-leaflet-provider="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                data-ts-map-zoom="14" data-ts-map-center-latitude="40.7128" data-ts-map-center-longitude="-74.0060"
+                data-ts-map-zoom-position="topright" data-ts-map-scroll-wheel="1"
+                data-ts-map-leaflet-attribution="&copy; OpenStreetMap contributors" style="height: 400px;">
+            </div>
+        </section>
+        <section id="additional-information" class="mb-5">
+            <h3 class="text-muted border-bottom">Additional Information</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Address</label>
+                    <p id="address">859 Stuart Street</p>
+                </div>
+                <div class="col-sm-6">
+                    <label>Phone</label>
+                    <p id="phone">+1 234 567 890</p>
+                </div>
+                <div class="col-sm-6">
+                    <label>Email</label>
+                    <p id="email">info@example.com</p>
+                </div>
+            </div>
+        </section>
+        <section id="description" class="mb-5">
+            <h3 class="text-muted border-bottom">Description</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae odio ac arcu ultricies volutpat. Ut vehicula, libero et lacinia cursus, risus ligula ullamcorper urna, a vulputate felis risus eget libero.</p>
+        </section>
+        <section id="gallery" class="mb-5">
+            <h3 class="text-muted border-bottom">Past Services</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="assets/img/img-item-thumb-02.jpg" class="img-fluid" alt="Photo 1">
+                </div>
+                <div class="col-sm-4">
+                    <img src="assets/img/img-item-thumb-02.jpg" class="img-fluid" alt="Photo 2">
+                </div>
+                <div class="col-sm-4">
+                    <img src="assets/img/img-item-thumb-02.jpg" class="img-fluid" alt="Photo 3">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/leaflet.js"></script>
+    <script src="assets/js/info-leaflet.js"></script>
+</body>
+
+</html>

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import './Header.css'; // Import the CSS file for styling
 
 const styles = {
   navBar: {
-    backgroundColor: '#343a40',
+    backgroundColor: '#004aac',
     padding: '1rem',
+    position: 'relative',
   },
   navBrand: {
     color: '#fff',
@@ -32,12 +34,23 @@ const styles = {
 };
 
 function Navigation() {
+  const location = useLocation();
+  let pageType = '';
+
+  if (location.pathname.startsWith('/family')) {
+    pageType = 'FAMILY';
+  } else if (location.pathname.startsWith('/business')) {
+    pageType = 'BUSINESS';
+  } else if (location.pathname.startsWith('/authority')) {
+    pageType = 'AUTHORITIES';
+  } else if (location.pathname.startsWith('/admin')) {
+    pageType = 'ADMIN';
+  }
+
   return (
     <nav style={styles.navBar} className="navbar navbar-expand-md navbar-dark">
+      <div className="page-type">{pageType}</div>
       <div className="container">
-        {/*<Link to="/" style={styles.navBrand}>
-          <img src="assets/img/logo-w.png" alt="Logo" />
-        </Link>*/}
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
@@ -75,23 +88,11 @@ function Navigation() {
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
-            {/*<li className="nav-item">
-              <a className="nav-link" href="login.html" style={styles.navLink}>Login</a>
-            </li>*/}
             <Link to="/" style={styles.navBrand}>
-                <li className="nav-item">
-                    <a className="nav-link" href="login.html" style={styles.navLink}>Back</a>
-                </li>
+              <li className="nav-item">
+                <a className="nav-link" href="login.html" style={styles.navLink}>Back</a>
+              </li>
             </Link>
-            {/*<li className="nav-item">
-              <a className="nav-link" href="register.html" style={styles.navLink}>Register</a>
-            </li>*/}
-            {/*<li className="nav-item">
-              <a className="btn btn-outline-light btn-sm m-1 px-3" href="submit.html" style={styles.navButton}>
-                <i className="fa fa-plus small mr-2" />
-                Add Property
-              </a>
-            </li>*/}
           </ul>
         </div>
       </div>
@@ -100,3 +101,16 @@ function Navigation() {
 }
 
 export default Navigation;
+
+/*import React from 'react';
+
+const Navigation = () => {
+    return (
+        <iframe src="/header.html" title="Navigation Header" style={{ width: '100%', height: '100px', border: 'none' }}></iframe>
+    );
+};
+
+export default Navigation;*/
+
+
+

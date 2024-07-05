@@ -91,7 +91,7 @@ A. Basic Styling
 -------------------------------------------*/
 
 body {
-    background-color: #f6f6f6;
+    background-color: #f5f0d8;
     color: #191919;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -1271,14 +1271,14 @@ button {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: #00f;
-    border-color: #00f;
+    background-color: #3d6daf;
+    border-color: #3d6daf;
     box-shadow: .125rem .1875rem .9375rem rgba(0, 0, 0, .3);
 }
 
 .btn-primary {
-    background-color: #00f;
-    border-color: #00f;
+    background-color: #0bb3d3;
+    border-color: #0bb3d3;
     color: #fff;
 }
 
@@ -5650,5 +5650,38 @@ img.mfp-img {
     .mfp-container {
         padding-left: .375rem;
         padding-right: .375rem;
+    }
+
+    /* Padding at the top of the page */
+    #basic-information {
+        padding-top: 20px;
+    }
+
+    /* Button container */
+    .btn-container {
+        margin-bottom: 10px;
+    }
+
+    /* Buttons styling */
+    .btn {
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn i {
+        margin-right: 10px;
+    }
+
+    /* Ensure all buttons have the same height */
+    .btn-container .btn {
+        min-height: 50px;
     }
 }

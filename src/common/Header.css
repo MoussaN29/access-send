@@ -1,0 +1,19 @@
+.page-type {
+  position: absolute;
+  left: 10px;
+  top: 35%;
+  transform: translateY(-50%);
+  font-stretch: 200%;
+  font-size: calc(100% + 54px); /* Adjust the font size to fit the height */
+  font-weight: bold;
+  font-style: italic; /* Add italic styling */
+  color: black;
+  background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  height: 100%; /* Fit the text vertically within the navigation box */
+  line-height: 1; /* Adjust line height to ensure proper fit */
+  display: flex;
+  align-items: center; /* Center text vertically */
+}

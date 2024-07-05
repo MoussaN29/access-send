@@ -193,41 +193,45 @@ $(document).ready(function($) {
     // Open InfoBox on marker click
     // =================================================================================================================
     function openInfobox(parameters) {
-
         var i = parameters["i"];
         var parentMarker = parameters["parentMarker"];
         var id = parameters["id"];
         var infoboxHtml = document.createElement('div');
-
+    
         // First create and HTML for infobox
         createInfoBoxHTML({"i": i, "infoboxHtml": infoboxHtml});
-
+    
         //==============================================================================================================
         // Set InfoBox options
         //==============================================================================================================
-
+    
         var popup = L.popup({closeButton: false, offset: [120, 0], closeOnClick: false})
             .setLatLng([parentMarker._latlng.lat, parentMarker._latlng.lng])
             .setContent(infoboxHtml)
             .openOn(map);
-
+    
         // Set the new "Last" opened marker
         lastMarker = parentMarker;
-
+    
         // Hide the current marker, so only InfoBox is visible
         parentMarker._markerIcon = parentMarker._icon.firstChild;
         $(parentMarker._icon.firstChild).addClass("ts-hide-marker");
-
+    
         setTimeout(function () {
             $(".ts-infobox[data-ts-id='" + id + "']").closest(".infobox-wrapper").addClass("ts-show");
-
+    
             $(".ts-infobox[data-ts-id='" + id + "'] .ts-close").on("click", function () {
                 $(".ts-infobox[data-ts-id='" + id + "']").closest(".infobox-wrapper").removeClass("ts-show");
                 $(parentMarker._markerIcon).removeClass("ts-hide-marker");
                 map.closePopup();
             });
+    
+            // Add click event to route to info-template.html
+            $(".ts-infobox[data-ts-id='" + id + "'] .ts-infobox__wrapper").on("click", function (e) {
+                e.preventDefault();
+                window.location.href = "info-template.html?id=" + id;
+            });
         }, 50);
-
     }
 
     //==================================================================================================================
@@ -235,19 +239,19 @@ $(document).ready(function($) {
     //==================================================================================================================
 
     function createInfoBoxHTML(parameters) {
-
         var i = parameters["i"];
         var infoboxHtml = parameters["infoboxHtml"];
-
+    
         infoboxHtml.innerHTML =
             '<div class="infobox-wrapper">' +
                 '<div class="ts-infobox" data-ts-id="' + loadedMarkersData[i]["id"] + '">' +
                     '<img src="assets/img/infobox-close.svg" class="ts-close">' +
-
+    
                     ( ( loadedMarkersData[i]["ribbon"] !== undefined ) ? '<div class="ts-ribbon">' + loadedMarkersData[i]["ribbon"] + '</div>' : "" ) +
                     ( ( loadedMarkersData[i]["ribbon_corner"] !== undefined ) ? '<div class="ts-ribbon-corner"><span>' + loadedMarkersData[i]["ribbon_corner"] + '</span></div>' : "" ) +
-
-                    '<a href="' + loadedMarkersData[i]["url"] + '" class="ts-infobox__wrapper ts-black-gradient">' +
+    
+                    // Change the href to info-template.html
+                    '<a href="info-template.html" class="ts-infobox__wrapper ts-black-gradient">' +
                         ( ( loadedMarkersData[i]["badge"] !== undefined && loadedMarkersData[i]["badge"].length > 0 ) ? '<div class="badge badge-dark">' + loadedMarkersData[i]["badge"] + '</div>' : "" ) +
                         '<div class="ts-infobox__content">' +
                             '<figure class="ts-item__info">' +
@@ -466,6 +470,17 @@ $(document).ready(function($) {
 
     }
 
-
+    function addPopupRouting(map, markers) {
+        markers.forEach(marker => {
+            marker.on('click', function () {
+                window.location.href = '/ServiceInfo';
+            });
+        });
+    }
+    
+    // Assuming you have already initialized your map and markers
+    
+    addPopupRouting(map, markers);
+    
 
 });
